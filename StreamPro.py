@@ -33,8 +33,7 @@ print(f"Downloading video from YouTube: {youtube_url}")
 # 2. vcodec^=avc: MUST be H.264 (AVC) to stream to YouTube without re-encoding.
 # 3. ext=mp4: Ensures compatible container.
 ydl_opts = {
-    'format': 'bestvideo[height=360][vcodec^=avc][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=360][vcodec^=avc][ext=mp4]+bestaudio[ext=m4a]/best[height<=360][ext=mp4]/best',
-    # 'format': 'bestvideo[height<=1080][vcodec^=avc][ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+    'format': 'bestvideo[height=1080][vcodec^=avc][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=1080][vcodec^=avc][ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
     'outtmpl': 'video.%(ext)s',
     'merge_output_format': 'mp4',
     'quiet': False,
@@ -72,26 +71,27 @@ except Exception as e:
     print(f"Error downloading video: {e}")
     sys.exit(1)
 
-# --- OPTIMIZATION 2: MINIMAL ENCODING FOR 360p (LOWEST CPU) ---
-# Ultra-minimal settings for 360p streaming to maximize cost efficiency
+# --- OPTIMIZATION 2: STREAM COPY MODE WITH KEYFRAME FIX ---
+# Re-encode with minimal settings to fix keyframe intervals (required by YouTube)
+# Using ultrafast preset to minimize CPU while fixing keyframes
 ffmpeg_cmd = [
     'ffmpeg',
     '-re',                   # Read input at native frame rate
     '-stream_loop', '-1',    # Loop input infinitely
     '-i', video_path,
     
-    # Video encoding settings (minimal CPU for 360p)
+    # Video encoding settings (minimal CPU usage)
     '-c:v', 'libx264',       # H.264 encoder
-    '-preset', 'ultrafast',  # Fastest encoding (lowest CPU)
+    '-preset', 'ultrafast',  # Fastest encoding (lowest CPU, larger file but doesn't matter for streaming)
     '-tune', 'zerolatency',  # Low latency for streaming
     '-g', '120',             # Keyframe every 120 frames (4 seconds at 30fps)
     '-keyint_min', '120',    # Minimum keyframe interval
     '-sc_threshold', '0',    # Disable scene change detection (saves CPU)
-    '-b:v', '800k',          # Bitrate for 360p (much lower than 1080p)
-    '-maxrate', '800k',
-    '-bufsize', '1600k',     # Buffer size (2x bitrate)
+    '-b:v', '4500k',         # Bitrate for 1080p (adjust if needed)
+    '-maxrate', '4500k',
+    '-bufsize', '9000k',
     
-    # Audio copy (no re-encoding needed - saves CPU)
+    # Audio copy (no re-encoding needed)
     '-c:a', 'copy',
     
     '-f', 'flv',
