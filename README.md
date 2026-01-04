@@ -4,7 +4,7 @@ Optimized YouTube 24/7 streaming script that reduces costs from ~$2 to ~$0.20 by
 
 ![sss](https://github.com/user-attachments/assets/26443786-5087-4cce-99f2-f9c10763119f)
 
-![ss](https://github.com/user-attachments/assets/26c00766-7d43-4423-9383-7cbcd9c3d426)
+![ss](https://github.com/user-attachments/assets/36141f71-2c27-48a2-9674-f656370665bd)
 
 ## Key Optimizations
 
