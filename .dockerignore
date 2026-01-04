@@ -1,0 +1,17 @@
+.env
+*.mp4
+*.mkv
+*.avi
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.git/
+.gitignore
+*.md
+.vscode/
+.idea/
+*.log
+

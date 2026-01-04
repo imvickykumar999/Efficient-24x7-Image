@@ -33,6 +33,39 @@ Optimized YouTube 24/7 streaming script that reduces costs from ~$2 to ~$0.20 by
    python stream.py
    ```
 
+## Docker Setup
+
+1. Build the Docker image:
+   ```bash
+   docker build -t youtube-stream .
+   ```
+
+2. Run the container with environment variables:
+   ```bash
+   docker run -d --name youtube-stream \
+     -e STREAM_KEY=your_youtube_stream_key_here \
+     -e YouTube_ID=your_youtube_video_id_here \
+     youtube-stream
+   ```
+
+   Or use a `.env` file (make sure it's in the same directory):
+   ```bash
+   docker run -d --name youtube-stream \
+     --env-file .env \
+     youtube-stream
+   ```
+
+3. View logs:
+   ```bash
+   docker logs -f youtube-stream
+   ```
+
+4. Stop the container:
+   ```bash
+   docker stop youtube-stream
+   docker rm youtube-stream
+   ```
+
 ## How It Works
 
 The script downloads a YouTube video in the exact format needed (1080p H.264 MP4) and streams it directly to YouTube's RTMP server using stream copy mode, which requires minimal CPU resources since no re-encoding occurs.
@@ -40,5 +73,5 @@ The script downloads a YouTube video in the exact format needed (1080p H.264 MP4
 ## Notes
 
 - The video will loop infinitely
-- Press `Ctrl+C` to stop the stream
-- Ensure FFmpeg is installed: `ffmpeg -version`
+- Press `Ctrl+C` to stop the stream (or `docker stop` if using Docker)
+- Ensure FFmpeg is installed: `ffmpeg -version` (included in Docker image)
