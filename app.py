@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
 
 r'''
-curl --location 'https://efficient-24x7-image-production.up.railway.app/webhook' \
+curl --location 'https://webhook.imvickykumar999.dpdns.org/webhook' \
 --header 'Content-Type: application/json' \
 --data '{
     "type": "DEPLOYMENT",
