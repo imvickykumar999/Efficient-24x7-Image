@@ -83,6 +83,21 @@ if __name__ == '__main__':
 
 
 r'''
+curl --location 'https://efficient-24x7-image-production.up.railway.app/webhook' \
+--header 'Content-Type: application/json' \
+--data '{
+    "type": "DEPLOYMENT",
+    "deployment": {
+        "status": "CRASHED" // OOM_KILLED, FAILED, CRASHED
+    },
+    "project": {
+        "name": "Test Railway Project"
+    },
+    "service": {
+        "name": "youtube-stream"
+    }
+}'
+
 (.venv) PS C:\Users\surface\Documents\GitHub\Efficient-24x7-Image> python .\app.py
  * Serving Flask app 'app'
  * Debug mode: off
