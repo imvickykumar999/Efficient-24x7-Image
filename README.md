@@ -2,7 +2,7 @@
 
 Optimized YouTube 24/7 streaming script that reduces costs from ~$2 to ~$0.20 by eliminating unnecessary video processing.
 
-![stream](https://github.com/user-attachments/assets/1e4f0017-54dc-4066-882d-8cbe64dfece1)
+![stream](https://github.com/user-attachments/assets/91ca2f03-b4d5-4cf3-bb3b-2ff4e473fe92)
 
 ![graph](https://github.com/user-attachments/assets/83ce4a4c-a6e8-4467-8e78-b92ca33fb49b)
 
